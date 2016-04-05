@@ -10,7 +10,7 @@ end
 
 class Person
 	include ToFile
-	att_accessor :name
+	attr_accessor :name
 
 	def initialize(name)
 		@name = name
@@ -20,3 +20,5 @@ class Person
 		name
 	end
 end
+
+Person.new('David').to_f
