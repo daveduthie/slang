@@ -1,5 +1,5 @@
 class Tree
-	attr_accesor :children, :node_name
+	attr_accessor :children, :node_name
 
 	def initialize(name, children=[])
 		@children = children
