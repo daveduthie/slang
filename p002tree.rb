@@ -24,7 +24,13 @@ end
 
 ruby_tree = Tree.new( "Ruby",
 	[Tree.new("Reia"),
-	 Tree.new("MacRuby")] )
+	 Tree.new("MacRuby"),
+	 Tree.new("Unicorn",
+	 	[Tree.new("Claus"),
+	 	 Tree.new("Santa Ragione")
+	 	])
+	] 
+ )
 
 # §
 # here's a diagram of the tree:
