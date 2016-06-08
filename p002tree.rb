@@ -1,5 +1,3 @@
-require 'pry'
-
 class Tree
 	attr_accessor :children, :node_name
 
@@ -35,17 +33,9 @@ ruby_tree = Tree.new(
 		] 
 	)
 
-# §
-# here's a diagram of the tree:
-# Ruby
-# |	  \
-# |	   \
-# Reia  MacRuby
-
 puts "Visiting a node"
 ruby_tree.visit {|node| puts node.node_name}
 puts
 
 puts "visiting entire tree"
-binding.pry
 ruby_tree.visit_all {|node| puts node.node_name}
