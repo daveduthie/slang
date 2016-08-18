@@ -29,10 +29,11 @@ test(sudoku) :-
 :- end_tests(test).
 
 valid([]).
-valid([Head|Tail]) :-
-    all_distinct(Head),
-    valid(Tail).
+valid([Head|Tail]) :- all_distinct(Head), valid(Tail).
 
+printbyrow([A,B,C,D,E,F,G,H,I|Tail]) :-
+  format('~w ~w ~w ~w ~w ~w ~w ~w ~w ~n', [A,B,C,D,E,F,G,H,I]), printbyrow(Tail).
+printbyrow([]) :- !.
 
 sudoku(Puzzle, Solution) :-
   Solution = Puzzle,
@@ -83,4 +84,7 @@ sudoku(Puzzle, Solution) :-
 	valid([
     Row1, Row2, Row3, Row4, Row5, Row6, Row7, Row8, Row9,
     Col1, Col2, Col3, Col4, Col5, Col6, Col7, Col8, Col9,
-    Sqr1, Sqr2, Sqr3, Sqr4, Sqr5, Sqr6, Sqr7, Sqr8, Sqr9]).
+    Sqr1, Sqr2, Sqr3, Sqr4, Sqr5, Sqr6, Sqr7, Sqr8, Sqr9]),
+
+  format('~n', []),
+  printbyrow(Solution).
