@@ -2,19 +2,42 @@ val winningPositions = List((0,1,2), (3,4,5), (6,7,8), (0,3,6), (1,4,7), (2,5,8)
 val players = List('X', 'O')
 
 class Board(cells: List[Char]) {
+
   val grid = cells
-  def checkWinner(player: Char) {
-    println
+  val numX = grid.count(_.charValue == 'X')
+  val numO = grid.count(_.charValue == 'O')
+  val numNull = grid.count(_.charValue == ' ')
+
+  def checkWinner: (Boolean, Char) = {
+    var returnVal = (false, ' ')
     winningPositions.foreach { pos =>
       var (a, b, c) = pos
       var test = (grid(a), grid(b), grid(c))
-      print(". ")
-      if (test == (player, player, player)) {
-        print(player)
-        print(" is the winner! ")
+      players.foreach { player =>
+        if (test == (player, player, player)) {
+          returnVal = (true, player)
+        }
       }
     }
+    return(returnVal)
   }
+
+  def checkDraw: Boolean = {
+    if (numNull == 0) {
+      return(true)
+      } else {
+        return(false)
+      }
+  }
+
+  val result = checkWinner
+
+  if (result._1 == true) {
+    println("The winner is " + result._2)
+  } else if (checkDraw == true) {
+    println("It's a draw!")
+  }
+
 }
 
 val winForX = new Board(List(
@@ -23,10 +46,11 @@ val winForX = new Board(List(
   'O', 'X', 'X'))
 
 val winForO = new Board(List(
-  'O', 'X', '_',
+  'O', 'X', ' ',
   'O', 'X', 'X',
-  'O', '_', '_'))
+  'O', ' ', ' '))
 
-winForX.checkWinner('X')
-winForX.checkWinner('O')
-winForO.checkWinner('O')
+val draw = new Board(List(
+  'O', 'O', 'X',
+  'X', 'X', 'O',
+  'O', 'X', 'O'))
