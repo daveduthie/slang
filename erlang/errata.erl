@@ -1,5 +1,5 @@
 -module(errata).
 -export([check/1]).
 
-check(success) -> fwrite("success~n");
-check({Error, Message}) -> fwrite("error: ~p~n", [Message]).
+check(success) -> io:fwrite("success~n");
+check({error, Message}) -> io:fwrite("error: ~p~n", [Message]).
