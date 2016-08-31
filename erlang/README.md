@@ -1,3 +1,5 @@
+# Day 1
+
 What are bitmaps? Behold: [Bitmap - Wikipedia, the free encyclopedia](https://en.wikipedia.org/wiki/Bitmap).
 
 ## Homework
