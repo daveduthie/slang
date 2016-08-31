@@ -52,7 +52,6 @@ strength.erl:7: Warning: variable 'Head' is unused
 ### Write a function that uses recursion to count to ten
 
 ```erlang
- Write a function that uses recursion to count to ten
 -module(count).
 -export([upto/1]).
 
