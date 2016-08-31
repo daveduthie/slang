@@ -139,6 +139,7 @@ Do:
 
 - Consider a list of keyword-value tuples, such as `[{erlang, "a functional language"}, {ruby, "an OO language"}].` Write a function that accepts the list and a keyword and returns the associated value for the keyword
 - Consider a shopping list that looks like `[{item, quantity, price}, ...]`. Write a list comprehension that builds a list of items of the form `[{item, total_price}, ...]`, where `total_price` is quantity times price
+- **Bonus:** write a tic-tac-toe tester that accepts a board as a list of length 9 and tests if there's a winner, if it's a draw, or if the game is unfinished
 
 ### Home made hash
 
@@ -171,45 +172,45 @@ totalPerItem(Cart) -> [{Item, Quantity * Price} || {Item, Quantity, Price} <- Ca
 
 ### Tic-Tac-Toe tester
 
-[![asciicast](https://asciinema.org/a/84285.png)](https://asciinema.org/a/84285)
+[![asciicast](https://asciinema.org/a/84417.png)](https://asciinema.org/a/84417)
 
 There's quite a bit of code:
 
 ```erlang
 -module(tic).
--export ([result/1]).
--export ([boardDraw/0]).
--export ([boardWin/0]).
+-export ([result/1, boardWin/0, boardDraw/0, boardUnfinished/0]).
 
-result(Board) ->
-  case check(Board) of
+result(Board) -> case winner(Board) of
     [true,false] -> "Win for X";
     [false,true] -> "Win for O";
-    _            -> "No winner"
-  end.
+    _            -> case lists:any(fun(E) -> E =:= e end, Board) of
+                        true -> "Unfinished business";
+                        false -> "Draw"
+                    end
+end.
 
-check(Board) -> [winner(Player, Board) || Player <- [x,o]].
+winner(Board) -> [winner(Player, Board) || Player <- [x,o]].
+winner(P, Board) -> lists:any(fun(Tup) ->
+    Tup =:= [P, P, P] end, combos(Board)).
 
-winner(Player, Board) ->
-  lists:any(fun(Tup) ->
-    Tup =:= [Player, Player, Player] end,
-    combos(Board)).
+combos(B) ->
+    [select({X,Y,Z}, B) || {X,Y,Z} <- winning_pos()].
 
-combos(B) -> [fromList({X,Y,Z}, B) || {X,Y,Z} <- wins()].
+select({X,Y,Z}, List) ->
+    [lists:nth(X, List), lists:nth(Y, List), lists:nth(Z, List)].
 
-fromList({X,Y,Z}, List) -> [lists:nth(X, List),
-                            lists:nth(Y, List),
-                            lists:nth(Z, List)].
+winning_pos()       -> [{1,2,3}, {4,5,6}, {7,8,9},
+                        {1,4,7}, {2,5,8}, {3,6,9},
+                        {1,5,9}, {3,5,7}].
 
-wins() -> [{1,2,3}, {4,5,6}, {7,8,9},
-           {1,4,7}, {2,5,8}, {3,6,9},
-           {1,5,9}, {3,5,7}].
-
-boardDraw() -> [x,o,e,
-                x,o,x,
-                e,x,o].
-
-boardWin()  -> [x,o,o,
-                x,o,x,
-                x,x,o].
+% for testing: sample boards for Win, Draw, and Unfinished cases
+boardWin()          -> [x,o,o,
+                        x,o,x,
+                        x,x,o].
+boardDraw()         -> [x,o,x,
+                        o,x,x,
+                        o,x,o].
+boardUnfinished()   -> [x,o,e,
+                        x,o,x,
+                        e,x,o].
 ```
