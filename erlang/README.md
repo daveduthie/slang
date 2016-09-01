@@ -214,3 +214,32 @@ boardUnfinished()   -> [x,o,e,
                         x,o,x,
                         e,x,o].
 ```
+
+# Day 3
+
+- concurrency
+    - spawn
+    - ! (send)
+    - receive
+
+- monitoring (and raising up fallen processes unto life)
+
+## Homework
+
+Find:
+
+- An OTP service that will restart a process if it dies
+- Documentation for building a simple OTP server
+
+Do:
+
+- Monitor the translate_service and restart it should it die
+- Make the Doctor process restart itself if it should die
+- Make a monitor for the Doctor monitor. If either monitor dies, restart it
+
+Bonus tasks:
+
+- Create a basic OTP server that logs messages to a file
+- Make the translate_service work across a network
+
+### Monitor the `translate_service` and restart it should it die
