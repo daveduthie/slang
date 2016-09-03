@@ -1,19 +1,22 @@
 % after compiling, run like this:
 %   > UN = spawn(fun intl_relations:loop/0).
-%   > UN ! new.
-%   > intl_relations:send_to(translator, "casa").
-% or
-%   > intl_relations:send_to(translator, "muerte").
-% it would be nice to make the receive loop in send_to time out
+%   > UN ! newAgency.
+%   > UN ! {translate, "casa"}.
+%   > UN ! {translate, "muerte"}. % will kill the translator!
+%
+% it would be nice to make the receive loop in translate() time out
 % in case the translator did not reply at all (because he was dead)
 
 -module(intl_relations).
--export([loop/0, send_to/2]).
+-export([loop/0]).
 
 loop() ->
     process_flag(trap_exit, true),
     receive
-        new ->
+        {translate, Word} ->
+            translate(Word),
+            loop();
+        newAgency ->
             io:format("Creating and monitoring process.~n"),
             register(translator, spawn_link(fun translate:loop/0)),
             loop();
@@ -24,8 +27,9 @@ loop() ->
             loop()
     end.
 
-send_to(To, Word) ->
-    To ! {self(), Word},
+translate(Word) ->
+    translator ! {self(), Word},
         receive
-            Translation -> Translation
+            Translation ->
+                io:format("Translazione: ~p~n", [Translation])
         end.
