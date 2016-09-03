@@ -243,3 +243,5 @@ Bonus tasks:
 - Make the translate_service work across a network
 
 ### Monitor the `translate_service` and restart it should it die
+
+see commit [6b54adc](http://lettuce.mooo.com/david-a-d/7lang/commit/6b54adc884f1258d3b5bb921e8259c0d883b79bb).
