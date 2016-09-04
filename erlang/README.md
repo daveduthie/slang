@@ -172,7 +172,7 @@ totalPerItem(Cart) -> [{Item, Quantity * Price} || {Item, Quantity, Price} <- Ca
 
 ### Tic-Tac-Toe tester
 
-[![asciicast](https://asciinema.org/a/84417.png)](https://asciinema.org/a/84417)
+[![asciicast](https://asciinema.org/a/84785.png)](https://asciinema.org/a/84785)
 
 There's quite a bit of code:
 
@@ -229,18 +229,21 @@ boardUnfinished()   -> [x,o,e,
 Find:
 
 - An OTP service that will restart a process if it dies
+    - maybe [this?](http://erlang.org/doc/design_principles/sup_princ.html#id79161)
 - Documentation for building a simple OTP server
+    - [Erlang -- gen_server](http://erlang.org/doc/man/gen_server.html)
+    - [What is OTP? | Learn You Some Erlang for Great Good!](http://learnyousomeerlang.com/what-is-otp#the-basic-server)
 
 Do:
 
-- Monitor the translate_service and restart it should it die
+- [x] Monitor the `translate_service` and restart it should it die
 - Make the Doctor process restart itself if it should die
 - Make a monitor for the Doctor monitor. If either monitor dies, restart it
 
-Bonus tasks:
+Bonus tasks!:
 
 - Create a basic OTP server that logs messages to a file
-- Make the translate_service work across a network
+- Make the `translate_service` work across a network
 
 ### Monitor the `translate_service` and restart it should it die
 
