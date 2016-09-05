@@ -230,6 +230,7 @@ Find:
 
 - An OTP service that will restart a process if it dies
     - maybe [this?](http://erlang.org/doc/design_principles/sup_princ.html#id79161)
+    - or [this?](http://erlang.org/doc/design_principles/des_princ.html#otp%20design%20principles)
 - Documentation for building a simple OTP server
     - [Erlang -- gen_server](http://erlang.org/doc/man/gen_server.html)
     - [What is OTP? | Learn You Some Erlang for Great Good!](http://learnyousomeerlang.com/what-is-otp#the-basic-server)
