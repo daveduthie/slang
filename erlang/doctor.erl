@@ -12,4 +12,4 @@ loop() ->
             io:format(" Restarting. ~n"),
             self() ! new,
             loop()
-end.
+        end.
