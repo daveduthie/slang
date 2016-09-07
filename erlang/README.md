@@ -254,3 +254,5 @@ see commit [6b54adc](http://lettuce.mooo.com/david-a-d/7lang/commit/6b54adc884f1
 ### a monitor for the Doctor monitor. If either monitor dies, restart it
 
 see [doctor.erl](http://lettuce.mooo.com/david-a-d/7lang/src/master/erlang/doctor.erl).
+
+[![asciicast](https://asciinema.org/a/85085.png)](https://asciinema.org/a/85085)
