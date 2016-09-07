@@ -18,6 +18,7 @@ bob() ->
             exit({bob, bang});
         {'EXIT', Pid, {Doctor, Reason}} ->
             io:format("Doctor ~p ~p has died because ~p~n", [Doctor, Pid, Reason]),
+            register(tim, spawn_link(fun tim/0)),
             bob()
         end.
 
@@ -33,5 +34,6 @@ tim() ->
             exit({tim, bang});
         {'EXIT', Pid, {Doctor, Reason}} ->
             io:format("Doctor ~p ~p has died because ~p~n", [Doctor, Pid, Reason]),
+            register(bob, spawn_link(fun bob/0)),
             tim()
         end.
