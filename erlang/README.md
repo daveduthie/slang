@@ -237,8 +237,9 @@ Find:
 
 Do:
 
-- [x] Monitor the `translate_service` and restart it should it die
+- Monitor the `translate_service` and restart it should it die
 - Make the Doctor process restart itself if it should die
+    - I shan't
 - Make a monitor for the Doctor monitor. If either monitor dies, restart it
 
 Bonus tasks!:
@@ -249,3 +250,7 @@ Bonus tasks!:
 ### Monitor the `translate_service` and restart it should it die
 
 see commit [6b54adc](http://lettuce.mooo.com/david-a-d/7lang/commit/6b54adc884f1258d3b5bb921e8259c0d883b79bb).
+
+### a monitor for the Doctor monitor. If either monitor dies, restart it
+
+see [doctor.erl](http://lettuce.mooo.com/david-a-d/7lang/src/master/erlang/doctor.erl).
