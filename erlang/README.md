@@ -251,7 +251,7 @@ Bonus tasks!:
 
 see commit [6b54adc](http://lettuce.mooo.com/david-a-d/7lang/commit/6b54adc884f1258d3b5bb921e8259c0d883b79bb).
 
-### a monitor for the Doctor monitor. If either monitor dies, restart it
+### Make a monitor for the Doctor monitor. If either monitor dies, restart it
 
 see [doctor.erl](http://lettuce.mooo.com/david-a-d/7lang/src/master/erlang/doctor.erl).
 
