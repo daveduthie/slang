@@ -5,6 +5,6 @@
 loop() ->
     receive
         3 -> io:format("bang.~n"),
-             exit({roulette,die,at,erlang:time()});
+             exit(roulexit);
         _ -> io:format("click~n"), loop()
 end.
