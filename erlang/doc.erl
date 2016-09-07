@@ -3,7 +3,8 @@
 init() ->
     register(bob, spawn(fun bob/0)),
     register(tim, spawn(fun tim/0)),
-    io:format("tim, bob, registered~n").
+    io:format("tim, bob, registered~n"),
+    tim ! {link, bob}.
 
 bob() ->
     process_flag(trap_exit, true),
@@ -14,9 +15,9 @@ bob() ->
             bob();
         bang ->
             io:format("Dying~n"),
-            exit(bang);
-        {'EXIT', Pid, Reason} ->
-            io:format("~p has died because ~p~n", [Pid, Reason]),
+            exit({bob, bang});
+        {'EXIT', Pid, {Doctor, Reason}} ->
+            io:format("Doctor ~p ~p has died because ~p~n", [Doctor, Pid, Reason]),
             bob()
         end.
 
@@ -29,8 +30,8 @@ tim() ->
             tim();
         bang ->
             io:format("Dying~n"),
-            exit(bang);
-        {'EXIT', Pid, Reason} ->
-            io:format("~p has died because ~p~n", [Pid, Reason]),
+            exit({tim, bang});
+        {'EXIT', Pid, {Doctor, Reason}} ->
+            io:format("Doctor ~p ~p has died because ~p~n", [Doctor, Pid, Reason]),
             tim()
         end.
