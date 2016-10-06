@@ -3,3 +3,4 @@
 *.swp
 scratch.*
 *.beam
+.DS_Store
