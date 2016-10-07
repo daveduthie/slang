@@ -11,7 +11,7 @@
 '(1 2 3 4)
 ```
 
-Operators include `first`, `rest`, `last`, and `cons` (join H|T together).
+Operators include `first`, `rest`, `last`, and `cons` (join `H|T` together).
 
 ### Vectors
 
@@ -122,4 +122,18 @@ There's also a short form: `(map #(* 2 (count %)) people)`. `#` begins an anonym
 
 (whatizzit avec)
 (whatizzit amap)
+```
+
+# Day 2
+
+Oh! My! Fibonacci and factorial in Clojure are rapturous!
+
+```clojure
+(defn fib-pair [[a b]] [b (+ a b)])
+(take 10 (map first
+    (iterate fib-pair [1 1])))
+(nth (map first
+    (iterate fib-pair [1 1])) 500)
+
+(defn factotum [n] (apply * (iterate inc 1)))
 ```
